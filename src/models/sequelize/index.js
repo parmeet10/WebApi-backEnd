@@ -15,13 +15,11 @@ const filenames = fs.readdirSync(__dirname)
 .filter(file => {
     return (file.indexOf('.') !== 0 && (file !== basename) && file.slice(-3) === '.js');
 });
-console.log(filenames);
 async function setupDatabase() {
     for (let filename of filenames) {
         const {default: file} = await import(path.resolve(__dirname, filename));
-        const model = file(sequelize, Sequelize.DataTypes);
+        const model = file(sequelize, Sequelize);
         db[model] = model;
-        console.log(db);
     }
     db.sequelize = sequelize;
     db.Sequelize = Sequelize;
@@ -29,16 +27,3 @@ async function setupDatabase() {
 }
 
 export default setupDatabase;
-
-
-// .forEach(async filename => {
-//     // return { default: modelfunction }
-//     const {default: file} = await import(path.resolve(__dirname, filename));
-//     const model = file(sequelize, Sequelize.DataTypes);
-//     db[model] = model;
-//     console.log(db);
-// });
-
-// db.sequelize = sequelize;
-// db.Sequelize = Sequelize;
-// export default db;

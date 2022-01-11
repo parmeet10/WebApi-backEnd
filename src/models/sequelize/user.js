@@ -1,5 +1,5 @@
 import { Model } from 'sequelize';
-const userFunc = (sequelize, DataTypes) => {
+const userFunc = (sequelize, Sequelize) => {
     class User extends Model {
         static associate(models) {}
 
@@ -9,20 +9,20 @@ const userFunc = (sequelize, DataTypes) => {
     }
     User.init({
         uuid: {
-            type: DataTypes.UUID,
-            defaultValue: DataTypes.UUIDV4,
+            type: Sequelize.DataTypes.UUID,
+            defaultValue: Sequelize.DataTypes.UUIDV4,
             allowNull: false
         },
         name: {
-            type: DataTypes.STRING,
+            type: Sequelize.DataTypes.STRING,
             allowNull: false
         },
         email: {
-            type: DataTypes.STRING,
+            type: Sequelize.DataTypes.STRING,
             allowNull: false
         },
         role: {
-            type: DataTypes.STRING,
+            type: Sequelize.DataTypes.STRING,
             allowNull: false
         },
         createdAt: {

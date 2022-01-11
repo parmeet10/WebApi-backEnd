@@ -1,7 +1,8 @@
 class ResponseHandler {
     constructor() {};
     
-    sendResponse(res, data, statusCode = 500) {
+    sendResponse(res, data = {}, statusCode = 500, message=null) {
+        data.message = message;
         return res.status(statusCode).send(data);
     }
 }
