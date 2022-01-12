@@ -20,17 +20,30 @@ module.exports = {
             defaultValue: Sequelize.DataTypes.UUIDV4,
             allowNull: false
         },
-        name: {
+        firstname: {
             type: Sequelize.DataTypes.STRING,
             allowNull: false
+        },
+        lastname: {
+          type: Sequelize.DataTypes.STRING,
+          allowNull: false
         },
         email: {
             type: Sequelize.DataTypes.STRING,
             allowNull: false
         },
-        role: {
-            type: Sequelize.DataTypes.STRING,
-            allowNull: false
+        roleId: {
+            type: Sequelize.DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+              model: 'roles',
+              key: 'id'
+            }
+        },
+        stat: {
+          type: Sequelize.DataTypes.INTEGER,
+          allowNull: false,
+          defaultValue: 1
         },
         createdAt: {
           type: 'TIMESTAMP',
@@ -41,8 +54,8 @@ module.exports = {
           type: 'TIMESTAMP',
           allowNull: false,
           defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
-        }
-     })
+        },
+     });
   },
 
   down: async (queryInterface, Sequelize) => {

@@ -1,31 +1,31 @@
 import { Model } from 'sequelize';
-const userFunc = (sequelize, Sequelize) => {
-    class User extends Model {
+
+const roleFunc = (sequelize, Sequelize) => {
+    class Role extends Model {
         static associate(models) {
-            this.belongsTo(models.Role)
+            this.hasMany(models.User);
         }
 
         toJSON() {
             return { ...this.get(), id: undefined }; // hides id from response
         }
     }
-    User.init({
-        uuid: {
-            type: Sequelize.DataTypes.UUID,
-            defaultValue: Sequelize.DataTypes.UUIDV4,
+
+    Role.init({
+        id: {
+            type: Sequelize.DataTypes.INTEGER,
+            autoIncrement: true,
+            primaryKey: true,
             allowNull: false
         },
         name: {
             type: Sequelize.DataTypes.STRING,
             allowNull: false
         },
-        email: {
-            type: Sequelize.DataTypes.STRING,
-            allowNull: false
-        },
-        roleId: {
+        status: {
             type: Sequelize.DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
+            defaultValue: 1
         },
         createdAt: {
             type: 'TIMESTAMP',
@@ -39,9 +39,9 @@ const userFunc = (sequelize, Sequelize) => {
         }
     }, {
         sequelize,
-        tableName: 'users',
-        modelName: 'User'
-    })
-    return User;
+        tableName: 'roles',
+        modelName: 'Role'
+    });
+    return Role;
 }
-export default userFunc;
+export default roleFunc;
