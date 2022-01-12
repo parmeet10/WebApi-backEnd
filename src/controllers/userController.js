@@ -2,7 +2,7 @@ import { HTTP_STATUS } from '../config/constants.js';
 import ResponseHandler from '../utils/responseHandler.js';
 import { userSignupSchema } from '../validations/schemas/user.js';
 import AjvCompile from '../validations/ajvCompile.js';
-import UserService from '../services/user.js';
+import UserService from '../services/userService.js';
 
 class UserController {
     constructor() {};
@@ -20,10 +20,11 @@ class UserController {
             } = req.body;
             const userService = new UserService();
             const user = await userService.signupUser(firstname, lastname, email, password);
+            if (user) return new ResponseHandler().sendResponse(res, {user}, HTTP_STATUS.CREATED);
         }
         catch (err) {
             console.error(err);
-            new ResponseHandler().sendResponse(res, {}, HTTP_STATUS.INTERNAL_SERVER_ERROR);
+            return new ResponseHandler().sendResponse(res, {}, HTTP_STATUS.INTERNAL_SERVER_ERROR);
         }
     }
 }

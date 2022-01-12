@@ -8,14 +8,10 @@ class UserRepository {
         firstname,
         lastname,
         email,
-        password
+        password,
+        roleId=1
     ) {
-        console.log(firstname);
-        console.log(email);
-        console.log(lastname);
-        console.log(password);
-        const User = new this.User();
-        const user = await User.save({firstname, lastname, email, password});
+        const user = await this.User.create({ firstname, lastname, email, password, roleId});
         return user;
     }
 }

@@ -15,7 +15,11 @@ const userFunc = (sequelize, Sequelize) => {
             defaultValue: Sequelize.DataTypes.UUIDV4,
             allowNull: false
         },
-        name: {
+        firstname: {
+            type: Sequelize.DataTypes.STRING,
+            allowNull: false
+        },
+        lastname: {
             type: Sequelize.DataTypes.STRING,
             allowNull: false
         },
