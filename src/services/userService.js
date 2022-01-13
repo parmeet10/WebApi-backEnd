@@ -13,6 +13,14 @@ import User from "../entities/user.js";
 
 class UserService {
     
+    /**
+     * 
+     * @param {*} firstname 
+     * @param {*} lastname 
+     * @param {*} email 
+     * @param {*} password 
+     * @returns 
+     */
     async signupUser(
         firstname,
         lastname,
@@ -44,13 +52,25 @@ class UserService {
         }
     }
 
+    /**
+     * 
+     * @param {*} email 
+     * @returns 
+     */
     async getUserByEmail(email) {
         const userRepository = new UserRepository();
         const userArr = await userRepository.findByEmail(email);
         return userArr;
     }
 
+    /**
+     * 
+     * @param {*} email 
+     * @param {*} password 
+     * @returns 
+     */
     async login(email, password) {
+        this.getUserByEmail()
         const userArr = await getUserByEmail(email);
         if (userArr.length) throw new HandledException(`User not found`);
         const isValidPassword = new Bcrypt().compare(password, userArr[0].password);

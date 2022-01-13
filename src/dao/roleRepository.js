@@ -5,6 +5,11 @@ class RoleRepository {
         this.Role = Database.getDB().Role;
     }
 
+    /**
+     * 
+     * @param {*} roleName 
+     * @returns 
+     */
     async findRoleByName(roleName) {
         const roles = await this.Role.findAll({
             where: {

@@ -5,6 +5,15 @@ class UserRepository {
         this.User = Database.getDB().User;
     }
 
+    /**
+     * 
+     * @param {*} firstname 
+     * @param {*} lastname 
+     * @param {*} email 
+     * @param {*} password 
+     * @param {*} roleId 
+     * @returns 
+     */
     async save(
         firstname,
         lastname,
@@ -15,7 +24,11 @@ class UserRepository {
         const user = await this.User.create({ firstname, lastname, email, password, roleId});
         return user;
     }
-
+/**
+ * 
+ * @param {*} email 
+ * @returns 
+ */
     async findByEmail(email) {
         const user = await this.User.findAll(
             {
