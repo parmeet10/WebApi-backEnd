@@ -47,7 +47,8 @@ class UserController {
                 password
             } = body;
             const userService = new UserService();
-            await userService.login(email, password);
+            const userLoginVO = await userService.login(email, password);
+            if (userLoginVO) return new ResponseHandler().sendResponse(res, {user: userLoginVO}, HTTP_STATUS.OK, 'Login successful');
         }
         catch (e) {
             console.error(e);
