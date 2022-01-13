@@ -16,20 +16,29 @@ const userFunc = (sequelize, Sequelize) => {
             allowNull: false
         },
         firstname: {
-            type: Sequelize.DataTypes.STRING,
+            type: Sequelize.DataTypes.STRING(50),
             allowNull: false
         },
         lastname: {
-            type: Sequelize.DataTypes.STRING,
+            type: Sequelize.DataTypes.STRING(50),
             allowNull: false
         },
         email: {
-            type: Sequelize.DataTypes.STRING,
+            type: Sequelize.DataTypes.STRING(100),
             allowNull: false
         },
         roleId: {
             type: Sequelize.DataTypes.INTEGER,
             allowNull: false
+        },
+        password: {
+            type: Sequelize.DataTypes.STRING(100),
+            allowNull: false
+        },
+        status: {
+            type: Sequelize.DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: 1
         },
         createdAt: {
             type: 'TIMESTAMP',

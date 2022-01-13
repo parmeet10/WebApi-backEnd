@@ -4,6 +4,7 @@ import {
     ROLE
 } from '../config/constants.js';
 import HandledException from "../exceptions/handledException.js";
+import Bcrypt from "./bcrypt.js";
 
 class UserService {
     
@@ -23,7 +24,9 @@ class UserService {
             ];
             const [existingUserArr, roles] = await Promise.all(promises);
             if (existingUserArr.length) throw new HandledException(`User already exists with email: ${email}`);
-            const user = await userRepository.save(firstname, lastname, email, password, roles[0].id);
+            const bcrypt = new Bcrypt();
+            const hashPassword = await bcrypt.encrypt(password);
+            const user = await userRepository.save(firstname, lastname, email, hashPassword, roles[0].id);
             return user;
         }
         catch (err) {
