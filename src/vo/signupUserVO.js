@@ -4,7 +4,7 @@ class SignUpUserVO {
         this.firstname = user.firstname;
         this.lastname = user.lastname;
         this.email = user.email;
-        this.token = token
+        this.token = token;
     }
 }
 export default SignUpUserVO;

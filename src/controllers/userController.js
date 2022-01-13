@@ -25,8 +25,8 @@ class UserController {
                 password
             } = body;
             const userService = new UserService();
-            const user = await userService.signupUser(firstname, lastname, email, password);
-            if (user) return new ResponseHandler().sendResponse(res, {user: new SignUpUserVO(user)}, HTTP_STATUS.CREATED, 'User created successfully');
+            const signupUserVO = await userService.signupUser(firstname, lastname, email, password);
+            if (signupUserVO) return new ResponseHandler().sendResponse(res, {user: signupUserVO}, HTTP_STATUS.CREATED, 'User created successfully');
         }
         catch (e) {
             console.error(e);
