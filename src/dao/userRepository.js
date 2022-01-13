@@ -11,8 +11,19 @@ class UserRepository {
         email,
         password,
         roleId=1
-    ) {
+    ) {        
         const user = await this.User.create({ firstname, lastname, email, password, roleId});
+        return user;
+    }
+
+    async findByEmail(email) {
+        const user = await this.User.findAll(
+            {
+                where: {
+                    email: email.toLowerCase()
+                }
+            }
+        )
         return user;
     }
 }

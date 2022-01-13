@@ -4,6 +4,7 @@ import { userSignupSchema } from '../validations/schemas/user.js';
 import AjvCompile from '../validations/ajvCompile.js';
 import UserService from '../services/userService.js';
 import SignUpUserVO from '../vo/signupUserVO.js';
+import HandledException from '../exceptions/handledException.js';
 
 class UserController {
     constructor() {};
@@ -23,8 +24,11 @@ class UserController {
             const user = await userService.signupUser(firstname, lastname, email, password);
             if (user) return new ResponseHandler().sendResponse(res, {user: new SignUpUserVO(user)}, HTTP_STATUS.CREATED, 'User created successfully');
         }
-        catch (err) {
-            console.error(err);
+        catch (e) {
+            console.error(e);
+            if (e instanceof HandledException) {
+                return new ResponseHandler().sendResponse(res, {}, HTTP_STATUS.BAD_REQUEST, e.getMessage());
+            }
             return new ResponseHandler().sendResponse(res, {}, HTTP_STATUS.INTERNAL_SERVER_ERROR);
         }
     }
