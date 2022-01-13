@@ -3,12 +3,14 @@ export const userSignupSchema = {
     properties: {
         firstname: {
             type: 'string',
+            minLength: 3,
             errorMessage: {
                 type: 'firstname must be a string'
             }
         },
         lastname: {
             type: 'string',
+            minLength: 3,
             errorMessage: {
                 type: 'firstname must be a string'
             }
@@ -16,12 +18,14 @@ export const userSignupSchema = {
         email: {
             type: 'string',
             format: 'email',
+            minLength: 6,
             errorMessage: {
                 type: 'email must be of form dummy@example.com'
             }
         },
         password: {
-            type: 'string'
+            type: 'string',
+            minLength: 8
         }
     },
     additionalProperties: false,
