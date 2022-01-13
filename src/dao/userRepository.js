@@ -1,4 +1,5 @@
 import Database from '../models/sequelize/index.js';
+
 class UserRepository {
     constructor() {
         this.User = Database.getDB().User;

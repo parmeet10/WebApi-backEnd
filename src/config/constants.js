@@ -6,4 +6,9 @@ export const HTTP_STATUS = {
     INTERNAL_SERVER_ERROR: 500
 }
 
+export const ROLE = {
+    ADMIN: 'ADMIN',
+    CUSTOMER: 'CUSTOMER'
+}
+
 export const UNAUTHORIZED = 'Unauthorized';

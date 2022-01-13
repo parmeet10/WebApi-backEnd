@@ -3,6 +3,7 @@ import ResponseHandler from '../utils/responseHandler.js';
 import { userSignupSchema } from '../validations/schemas/user.js';
 import AjvCompile from '../validations/ajvCompile.js';
 import UserService from '../services/userService.js';
+import SignUpUserVO from '../vo/signupUserVO.js';
 
 class UserController {
     constructor() {};
@@ -20,7 +21,7 @@ class UserController {
             } = req.body;
             const userService = new UserService();
             const user = await userService.signupUser(firstname, lastname, email, password);
-            if (user) return new ResponseHandler().sendResponse(res, {user}, HTTP_STATUS.CREATED);
+            if (user) return new ResponseHandler().sendResponse(res, {user: new SignUpUserVO(user)}, HTTP_STATUS.CREATED, 'User created successfully');
         }
         catch (err) {
             console.error(err);
