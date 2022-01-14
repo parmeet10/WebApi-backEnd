@@ -19,5 +19,10 @@
       "database": "database_production",
       "host": "127.0.0.1",
       "dialect": "mysql"
+    },
+    "mongo": {
+      "development": {
+        "url": "mongodb+srv://hasneet:hasneet1231@cluster0.mdn4b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+      }
     }
   }
