@@ -7,12 +7,13 @@ class BlogService {
         title,
         description,
         categoryId,
-        authorId
+        authorId,
+        thumbnail
     ) {
         try {
             const blogRepository = new BlogRepository();
-            const blog = await blogRepository.save(title, description, categoryId, authorId);
-            const _blog = new Blog(blog._id, title, description, categoryId, authorId);
+            const blog = await blogRepository.save(title, description, categoryId, authorId,thumbnail);
+            const _blog = new Blog(blog._id, title, description, categoryId, authorId,thumbnail);
             return _blog;
         }
         catch (err) {

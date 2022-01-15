@@ -29,7 +29,14 @@ export const blogCreateSchema = {
                 format: 'authroId must be positive integer'
             }
         },
+        thumbnail: {
+            type: 'string',
+            minLength: 10,
+            errorMessage: {
+                format: 'thumbnail must be a string'
+            }
+        },
     },
-    required: ['title', 'description', 'categoryId', 'authorId'],
+    required: ['title', 'description', 'categoryId', 'authorId','thumbnail'],
     additionalProperties: false
 }

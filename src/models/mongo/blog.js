@@ -17,6 +17,10 @@ const blogSchema = new Schema({
         type: Number,
         required: true
     },
+    thumbnail: {
+        type: String,
+        required: true
+    },
     createdAt: {
         type: Date,
         required: true,

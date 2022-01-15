@@ -10,7 +10,8 @@ class BlogRepository {
         title,
         description,
         categoryId,
-        authorId
+        authorId,
+        thumbnail
     ) {
         const blog = await Blog.create(
             {
@@ -18,6 +19,7 @@ class BlogRepository {
                 description,
                 categoryId,
                 authorId,
+                thumbnail,
             }
         );
         return blog;

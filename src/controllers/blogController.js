@@ -20,10 +20,11 @@ class BlogController {
                 title,
                 description,
                 categoryId,
-                authorId
+                authorId,
+                thumbnail
             } = body;
             const blogService = new BlogService();
-            await blogService.save(title, description, categoryId, authorId);
+            await blogService.save(title, description, categoryId, authorId,thumbnail);
             return new ResponseHandler().sendResponse(res, {}, HTTP_STATUS.CREATED, 'Blog created successfully.');
         }
         catch (e) {
