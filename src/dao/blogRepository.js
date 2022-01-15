@@ -24,5 +24,9 @@ class BlogRepository {
         );
         return blog;
     }
+    async list(){
+        const list = await Blog.find().lean();
+        return list;
+    }
 }
 export default BlogRepository;

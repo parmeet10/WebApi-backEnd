@@ -46,8 +46,9 @@ export const userLoginSchema = {
             errorMessage: {
                 type: 'password must be a string'
             }
-        },
-        additionalProperties: false,
-        required: ['email', 'password']
-    }
+        }
+       
+    },
+    additionalProperties: false,
+    required: ['email', 'password']
 }

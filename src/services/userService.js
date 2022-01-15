@@ -70,11 +70,10 @@ class UserService {
      * @returns 
      */
     async login(email, password) {
-        this.getUserByEmail()
-        const userArr = await getUserByEmail(email);
-        if (userArr.length) throw new HandledException(`User not found`);
+        const userArr = await this.getUserByEmail(email);
+        if (userArr.length===0) throw new UnauthorizedException(`User not found`);
         const isValidPassword = new Bcrypt().compare(password, userArr[0].password);
-        if (!isValidPassword) throw new UnauthorizedException('Invalid password');
+        if (isValidPassword==0) throw new UnauthorizedException('Invalid password');
         const _user = new User(userArr[0].id, userArr[0].uuid, userArr[0].firstname, userArr[0].lastname, userArr[0].email, userArr[0].password);
         const plainUser = {
             ..._user

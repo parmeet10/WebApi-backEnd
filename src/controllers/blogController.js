@@ -7,6 +7,7 @@ import {
 } from '../validations/schemas/blog.js';
 import AjvCompile from '../validations/ajvCompile.js';
 import BlogService from '../services/blogService.js';
+import BlogListVO from '../vo/blogListVO.js';
 
 class BlogController {
     constructor() {};
@@ -31,6 +32,15 @@ class BlogController {
             console.error(e);
             return new ResponseHandler().sendResponse(res, {}, HTTP_STATUS.INTERNAL_SERVER_ERROR, 'Something went wrong.');
         }
+    }
+    async list(req, res){
+        try {
+            const blogService = new BlogService();
+            const blogListVO = await blogService.list();
+            return new ResponseHandler().sendResponse(res, {data: blogListVO}, HTTP_STATUS.OK, 'Blog list fetched successfully.');
+
+        }
+        catch (e) {}
     }
 }
 export default BlogController;
