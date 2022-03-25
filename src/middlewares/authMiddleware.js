@@ -10,7 +10,7 @@ class AuthMiddleware {
 
     authenticate(req, res, next) {
         try {
-            console.log('HELLO')
+            
             const token = req.headers.token;
             if (!token) return new ResponseHandler().sendResponse(res, {message: UNAUTHORIZED}, HTTP_STATUS.BAD_REQUEST);
             const decoded = new JWT().decode(token);
